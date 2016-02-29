@@ -26,7 +26,8 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Education et Formation</title>
-
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	
 	<link rel="stylesheet" type="text/css" href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' />
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" />
@@ -102,6 +103,7 @@
 		$(document).ready(function() {
 
 			var selectedRows = [];
+
 
 			var table = $('#listbygroup').DataTable({
 				select: {
