@@ -30,12 +30,13 @@ body {
 		height: 65px;
 		margin: 0;
 		padding: 0 22px;
-		background-color: #03A9F4;
-		color: #B3E5FC;
+		/*background-color: #03A9F4;*/
+		background-color: #2196F3; /* Blue 500 */
+		color: #D3E5FC;
 		line-height: 65px;
 		overflow: hidden;
 		font-size: 18px;
-		font-weight: 700;
+		font-weight: 400;
 	}
 
 		#form-header .fa-archive {
@@ -74,10 +75,11 @@ body {
 		border-radius: 5px;
 		-webkit-box-shadow: none;
 		box-shadow: none;
-		-webkit-transition: border-color ease-in-out 1s;
-		-o-transition: border-color ease-in-out 1s;
-		transition: border-color ease-in-out 1s;
-		margin-bottom:15px;
+		-webkit-transition: border-color ease-in-out 0.25s;
+		-o-transition: border-color ease-in-out 0.25s;
+		transition: border-color ease-in-out 0.25s;
+		margin-bottom: 16px;
+		/*outline: none;*/
 	}
 	
 	label {
@@ -89,7 +91,7 @@ body {
 	
 	.btn {
 		color: #fff;
-		background-color: #fe8765;
+		background-color: #FF8A65; /* Deep Orange 300 */ /*old : #fe8765*/
 		border: none;
 		padding: 14px;
 		font-size: 14px;
@@ -99,9 +101,14 @@ body {
 		min-width: 80px;
 		cursor:pointer;
 		outline: none;
+		margin-top: 9px;
 	}
 		.btn:hover {
 			background-color: #ff7149;
+		}
+
+		.btn:disabled {
+			background-color: #bdbdbd;
 		}
 	
 	#table-group .btn-print {
@@ -137,6 +144,17 @@ body {
 			background-color: #0098dd;
 		}
 		*/
+	
+
+
+	/* Header */ 
+
+	.mdl-layout__header{
+		background-color: #2196F3; /* Blue 500 */
+		color: #D3E5FC;
+	}
+
+
 
 	/* bouton recherche */
 
@@ -147,7 +165,7 @@ body {
 
 	table.dataTable tbody>tr.selected, 
 	table.dataTable tbody>tr>.selected {
-		background-color: #3f51b5;
+		background-color: #42A5F5; /* Blue 400 */
 		color: #fff;
 	}
 

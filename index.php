@@ -1,7 +1,9 @@
 <?php
+
 	if (isset($_POST['groupe']) && !empty($_POST['groupe'])) {
 		header("Location: $_POST[groupe]");
 	}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -37,23 +39,25 @@
 				$attribute = array("name", "description");
 
 				if (!($connect=@ldap_connect($ldap_server))) {
-					die("Could not connect to ldap server");
+					$connect_error = "Could not connect to ldap server";
+					//die("Could not connect to ldap server");
 				}
 
 				if (!($bind=@ldap_bind($connect, $auth_user, $auth_pass))) {
-					die("Unable to bind to server");
+					$connect_error = "Unable to bind to server";
+					//die("Unable to bind to server");
 				}
 
 				// search active directory
 
 				if (!($search=@ldap_search($connect, $base_dn, $filter, $attribute))) {
-					die("Unable to search ldap server");
+					$connect_error = "Unable to search ldap server";
+					//die("Unable to search ldap server");
 				}
 
 				$number_returned = ldap_count_entries($connect,$search);
 				ldap_sort($connect, $search, 'description');
 				$info = ldap_get_entries($connect, $search);
-
 				echo '[';
 				echo '{"" : "--" },';
 
@@ -78,6 +82,8 @@
 			</form>
 		</div>
 	</div>
+
+
 	
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 	<script type="text/javascript" src="js/jquery.chained.remote.min.js"></script>
@@ -90,9 +96,26 @@
 				parents : "#site",
 				url : "/api/groupe.php"
 			});
-		})(jQuery);
+		});
 
 	</script>
+
+	<?php if (isset($connect_error) && !empty($connect_error)) : ?>
+		
+	<script type="text/javascript">
+		alert('<?php echo $connect_error; ?>');
+		var submit = document.getElementById('submit');
+		submit.setAttribute("disabled", "true");
+		/*
+		.onclick = function(e) { 
+			e.preventDefault();
+			//alert(this.innerHTML.attributes)
+			this.setAttribute("disabled", "true"); 
+		};
+		*/
+	</script>
+
+	<?php endif; ?>
 
 </body>
 </html>
