@@ -9,8 +9,8 @@ body {
 	
 .main {
 	width: 92%;
-	padding: 2% 4%;
-	margin: 0 auto;
+	margin: 2% 4%;
+	/*margin: 0 auto;*/
 }
 
 
@@ -144,3 +144,10 @@ body {
 		margin: 12px 0;
 		text-align: left
 	}
+
+	table.dataTable tbody>tr.selected, 
+	table.dataTable tbody>tr>.selected {
+		background-color: #3f51b5;
+		color: #fff;
+	}
+
