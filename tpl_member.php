@@ -1,10 +1,32 @@
+<?php
+	
+	$id = null;
+
+	if (isset($_POST['id']) && !empty($_POST['id']))
+	{
+		$id = $_POST['id'];
+	}
+	if (isset($_POST['name']) && !empty($_POST['name']))
+	{
+		$name = $_POST['name'];
+	}
+
+	
+	$page = $name;
+
+	$results = array('error' => false, 'results' => $name);
+	
+	echo json_encode($results);
+	exit(); 
+?>
+<!--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Education et Formation</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-	<!-- CSS -->
+
 	<link rel="stylesheet" type="text/css" media="all" href='https://fonts.googleapis.com/css?family=Roboto:400,300,700' />
 	<link rel="stylesheet" type="text/css" media="all" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" />
@@ -38,8 +60,6 @@
 			<div class="center">
 			
 				<div class="section">
-					<!-- <p class="info">Votre nom : <strong>Alain Durand</strong></p> -->
-
 					<p class="info">Votre nom :</p>
 					<p class="title" style="color: #212121;">Alain Durand</p>
 				</div>
@@ -66,4 +86,5 @@
 
 </body>
 </html>
-						
+-->
+					

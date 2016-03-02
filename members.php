@@ -47,7 +47,7 @@
 	<!--<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" type="text/css" href="//code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css" />
 	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/plug-ins/1.10.10/integration/jqueryui/dataTables.jqueryui.css" />-->
-	<link rel="stylesheet" type="text/css" href="src/datatables.min.css"/>>
+	<link rel="stylesheet" type="text/css" href="src/datatables.min.css"/>
 	<link rel="stylesheet" type="text/css" media="all" href="css/material.min.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="src/datatables.material.min.css" />
 	<!-- <link rel="stylesheet" type="text/css" media="all" href="src/Buttons-1.1.2/css/buttons.dataTables.min.css" /> -->
@@ -159,21 +159,7 @@
 			</div>
 		</main>
 	</div>
-	<!-- <div id="table-group" class="container"> -->
-		
-		<!-- <div class="row"> -->
-			<!-- <button type="button" id="print-button" class="btn btn-print" onclick="" style="margin-bottom: 24px;">Print</button> -->
-		
-			<!-- <button type="button" class="btn btn-back" onclick="location.href='http://devsmb4dc';">Retour</button> -->
-		<!-- </div> -->
-		<!-- <div style="clear: both;"></div> -->
 
-		<!-- <div class="row"> -->
-			
-
-		<!-- </div>
-
-	</div> -->
 
 
 	<script type="text/javascript">
@@ -184,18 +170,67 @@
 
 			var selectedRows = [];
 
+			var pages = '';
+			var publishPDF = null;
 
-			this.createPDF = function(doc) {
+			this.selectPDFData = function(doc) {
 
-				//console.log(doc.content[1]);
+				/*
+				var page = '';
+				var url = 'tpl_member.php';
+				var pdf = null;
+				var max = selectedRows.length
 
-				for (var i = 0; i < selectedRows.length; i++) {
+				for (var i = 0; i < max; i++) {
 					
-					doc.content[1] = {
-						text: selectedRows[i].name
-					} 
+					$.post(url, {'id': selectedRows[i].id, 'name': selectedRows[i].name, 'forname': selectedRows[i].forname, 'login': selectedRows[i].login, 'pass': selectedRows[i].pass}, function(data) {
 
+						if (data.error) {
+
+							alert(data.error);
+						}
+						else {
+
+							//pages = pages + '' + data.results;
+							//doc.content.push(pages);
+
+							if (i == max - 1) {
+								publishPDF = self.createPDF(data.results, true);
+							}
+							else {
+								publishPDF = self.createPDF(data.results, false);
+							}
+						}
+					}, 'json');
+
+					//console.log(pages);
 				}
+
+				
+				doc.content[1] = {
+					text: publishPDF
+				};
+				*/
+
+				var docDefinition = {
+					content: [
+						'Ce document est personnel et ne doit pas être donner, ni prêter, à une autre personne, hormis à votre formateur. Vérifier que votre nom est correct. En cas d\'erreur, renseignez-vous auprès de votre responsable.'
+					]
+				};
+				doc.content = docDefinition.content;
+				//console.log(doc.content[1].className);
+
+				//doc.content[1].text = 'ok';
+				/*
+				for (var i = 0; i < doc.content.length; i++) {
+					console.log(i + ' - ' + doc.content[i]);
+				}
+				*/
+				
+				//doc.content[0] = '';
+				//doc.content[1] = {
+				//	text: pages
+				//};
 				/*
 				var cols = [];
 				cols[0] = {text: 'Left part', alignment: 'left', margin:[20] };
@@ -214,6 +249,7 @@
 
 			this.printSingle = function(win) {
 				//win.document.body.innerHTML = 'coucou';
+				//$('.mdl-layout-title').htmls('coucou');
 				//console.log(win.document.body);
 			};
 
@@ -235,51 +271,62 @@
 				// select: true,
 				
 				buttons: [
-				/*{
+				{
 					extend: 'print',
 					text: 'Imprimer la selection',
 					className: 'printButton',
 					//action : '',
-					title : '',
+					title : '<?php echo $title ?>',
 					//message: function() {
 					//	console.log('print');
 					//},
 					exportOptions: {
-						modifier: {
-							rows: $('.selected')
+						rows: $('#row0, #row2'),
+						format: {
+							header: function (data, columnIdx) {
+								return 'yo';
+							},
+							body: function (data, columnIdx) {
+								return columnIdx +': '+ data;
+							},
+							footer: function (data, columnIdx, rowIdx) {
+								return 'ya';
+							}
 						}
 					},
 					header: false,
 					footer: false,
 					//autoPrint: false,
-					customize: self.printSingle(window)
-				},*/
+					//customize: function(win) {
+					//	self.printSingle(win); 
+					//}
+				},
 				{
 					extend: 'pdf',
-					text: 'Imprimer la selection',
+					text: 'Afficher la selection',
 					className: 'printPdfButton',
 					extension: 'pdf',
 					download: 'open',
-					//action : 'create',
+					//action : true,
 					title : '<?php echo $title ?>',
 					/*
 					message: function() {
 						console.log('print');
 					},
 					*/
-					/*
+					
 					exportOptions: {
-						modifier: {
-							rows: $('.selected')
-						}
+						// modifier: {
+						// 	rows: $('.selected')
+						// }
 					},
-					*/
+					
 					header: false,
 					footer: false,
 					//autoPrint: false,
 					customize: function(doc) {
 
-						self.createPDF(doc);
+						//self.selectPDFData(doc);
 						
 						// Data URL generated by http://dataurl.net/#dataurlmaker
 						/*
@@ -295,6 +342,13 @@
 							image: 'data:image/png;base64,...',
 						});
 						*/
+					}
+				},
+				{
+					extend: 'selected',
+					text: 'Count selected rows',
+					action: function ( e, dt, button, config ) {
+						//alert( dt.rows( { selected: true } ).indexes().length +' row(s) selected' );
 					}
 				}]
 			});
