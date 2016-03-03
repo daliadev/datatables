@@ -31,7 +31,7 @@ body {
 		margin: 0;
 		padding: 0 22px;
 		/*background-color: #03A9F4;*/
-		background-color: #2196F3; /* Blue 500 */
+		background-color: #1E88E5; /* Blue 600 */
 		color: #D3E5FC;
 		line-height: 65px;
 		overflow: hidden;
@@ -91,7 +91,7 @@ body {
 	
 	.btn {
 		color: #fff;
-		background-color: #FF8A65; /* Deep Orange 300 */ /*old : #fe8765*/
+		background-color: #FF7043; /* Deep Orange 300 */ /*old : #fe8765*/
 		border: none;
 		padding: 14px;
 		font-size: 14px;
@@ -150,7 +150,7 @@ body {
 	/* Header */ 
 
 	.mdl-layout__header{
-		background-color: #2196F3; /* Blue 500 */
+		background-color: #1E88E5; /* Blue 600 */
 		color: #D3E5FC;
 	}
 
@@ -169,7 +169,65 @@ body {
 		color: #fff;
 	}
 
-	.printButton {
+	/* Table header */
+	thead {
+		background-color: #90CAF9; /* Blue 200 */
+	}
+	
+	thead tr th.mdl-data-table__cell--non-numeric {
+		font-size: 14px;
+	}
+
+	/*mdl-button--raised.mdl-button--colored:active, .mdl-button--raised.mdl-button--colored:hover*/
+	a.dt-button.printPdfButton {
 		
+		margin: 17px 0 0 24px;
+		padding: 12px;
+		text-transform: none;
+		line-height: 15px;
+		height: 37px;
+		background-color: #FF7043;
+		background-image: none;
+		border: none;
+		border-radius: 3px;
+		color: #fff;
+		font-size: 14px;
+		font-family: "Roboto", sans-serif;
+		font-weight: 400;
+		cursor: pointer;
+		outline: none;
+	}
+		
+		a.dt-button.printPdfButton:active, a.dt-button.printPdfButton:active:not(.disabled), a.dt-button.printPdfButton:hover, a.dt-button.printPdfButton:hover:not(.disabled), a.dt-button.printPdfButton:focus, a.dt-button.printPdfButton:focus:not(.disabled) {
+			border: none;
+			text-shadow: none;
+			outline: none;
+			background-color: #FF7043;
+			background-image:  none;
+			box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+		}
+		
+		a.dt-button:active:not(.disabled):hover:not(.disabled)
+		{
+			border: none;
+			text-shadow: none;
+			outline: none;
+			background-color: #FF7043;
+			background-image:  none;
+			box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+		}
+
+		a.dt-button.printPdfButton(.disabled) {
+			background-color: #bdbdbd;
+		}
+
+	.mdl-button.mdl-button--raised.mdl-button--colored {
+		
+		/*margin: 17px 0 0 24px;*/
+		/*padding: 10px;
+		text-transform: none;
+		line-height: 22px;
+		height: 37px;*/
+		background-color: #FF7043;
 	}
 
